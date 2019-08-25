@@ -23,6 +23,8 @@ using UnsignedIntegrals = TYPELIST_4(unsigned char, unsigned short int, unsigned
 namespace TL
 {
 
+    // Length 
+
     template<class TList>
     struct Length;
 
@@ -38,7 +40,7 @@ namespace TL
         static constexpr size_t value = 1u + Length<Tail>::value;
     };
 
-
+    // At 
 
     template<class TList, unsigned int index>
     struct At;
@@ -55,7 +57,7 @@ namespace TL
         using Result = typename At<Tail, index - 1>::Result;
     };
 
-
+    // IndexOf 
 
     template<class TList, typename T>
     struct IndexOf;
@@ -78,7 +80,7 @@ namespace TL
         static constexpr int value = (IndexOf<Tail, T>::value == -1) ? (-1) : (1 + IndexOf<Tail, T>::value);
     };
 
-
+    // Append 
 
     template<class TList, typename T>
     struct Append;
@@ -101,7 +103,7 @@ namespace TL
         using Result = TypeList<Head, typename Append<Tail, T>::Result>;
     };
 
-
+    // Erase 
 
     template<class TList, typename T>
     struct Erase;
@@ -118,7 +120,7 @@ namespace TL
         using Result = TypeList<Head, typename Erase<Tail, T>::Result>;
     };
 
-
+    // EraseAll 
 
     template<class TList, typename T>
     struct EraseAll;
@@ -141,7 +143,7 @@ namespace TL
         using Result = TypeList<Head, typename EraseAll<Tail, T>::Result>;
     };
 
-
+    // NoDuplicates 
 
     template<class TList>
     struct NoDuplicates;
@@ -158,7 +160,7 @@ namespace TL
         using Result = TypeList<Head, typename EraseAll<Head, typename NoDuplicates<Tail>::Result>::Result>;
     };
 
-
+    // Replace 
 
     template<class TList, typename T, typename U>
     struct Replace;
